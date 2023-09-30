@@ -1,0 +1,80 @@
+.detail_tabs {
+  margin-top: 5%;
+  margin-left: 15%;
+  width: 70%;
+  background-color: white;
+}
+.detail_title {
+  height: 100%;
+}
+.title {
+  text-align: center;
+}
+::ng-deep .mat-tab-list .mat-tab-labels {
+  background-color: gold;
+  }
+  .open_now {
+    color: lightgreen;
+    text-align: center;
+  }
+  .close_now {
+    color: red;
+    text-align: center;
+  }
+  .display_NA {
+    text-align: center;
+  }
+  .shareon_button {
+    margin-top: 5%;
+  }
+.sliver_review {
+  background-color: lightgray;
+}
+.white_review {
+  background-color: white;
+}
+.eachLineMargin {
+  margin-top: 5%;
+}
+.attribute_titles {
+  text-align: center;
+}
+.attribute_values {
+  text-align: center;
+}
+.business_address {
+  display:inline-block;
+  margin-left: 10%;
+  width: 30%;
+}
+.business_category {
+  display:inline-block;
+  margin-left: 15%;
+  width: 30%;
+}
+.business_phone {
+  display:inline-block;
+  margin-left: 10%;
+  width: 30%;
+}
+.business_price {
+  display:inline-block;
+  margin-left: 15%;
+  width: 30%;
+}
+.business_status {
+  display:inline-block;
+  margin-left: 10%;
+  width: 30%;
+}
+.business_link {
+  display:inline-block;
+  margin-left: 15%;
+  width: 30%;
+}
+.image_size {
+  margin-left: 25%;
+  width:  50%;
+  height: 50%;
+  background-size: cover;
+}

@@ -1,0 +1,150 @@
+<ng-container *ngIf="displayBusinessDetails">
+  <div class = "detail_tabs">
+    <div class = "detail_title">
+      <br>
+        <fa-icon style = "font-size: 16px" (click) = "backToResult()" [icon]="faArrowLeft"></fa-icon>
+      <br>
+      <h4 class = "title">{{business_detail.title}}</h4>
+      <br>
+    </div>
+    <mat-tab-group mat-align-tabs="center" dynamicHeight="true" [backgroundColor]="">
+      <mat-tab label="Business details">
+        <div class = "card">
+          <div class = "card-body">
+            <div class = "eachLineMargin">
+              <div class = "business_address">
+                <h5 class = "attribute_titles">Address</h5>
+                <div class = "attribute_values">{{business_detail.address}}</div>
+              </div>
+              <div class = "business_category">
+                <h5 class = "attribute_titles">Category</h5>
+                <div class = "attribute_values">{{business_detail.category}}</div>
+              </div>
+            </div>
+            <div class = "eachLineMargin">
+              <div class = "business_phone">
+                <h5 class = "attribute_titles">Phone</h5>
+                <div class = "attribute_values">{{business_detail.phone}}</div>
+              </div>
+              <div class = "business_price">
+                <h5 class = "attribute_titles">Price range</h5>
+                <div class = "attribute_values">{{business_detail.price}}</div>
+              </div>
+            </div>
+            <div class = "eachLineMargin">
+              <div class = "business_status">
+                <h5 class = "attribute_titles">Status</h5>
+                <div>
+                  <ng-container *ngIf = "business_detail.is_undefined else displayNA">
+                    <ng-container *ngIf= "business_detail.is_open else closed">
+                      <div class = "open_now">Open Now</div>
+                    </ng-container>
+                    <ng-template #closed>
+                      <div class = "close_now">Closed</div>
+                    </ng-template>
+                  </ng-container>
+                  <ng-template #displayNA>
+                    <div class = "display_NA">
+                      N/A
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class = "business_link">
+                <h5 class = "attribute_titles">Visit yelp for more</h5>
+                <div>
+                  <a href="{{business_detail.url}}" class = "url" target="_blank">
+                    <div class = "attribute_values">
+                      Business link
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="h-100 d-flex align-items-center justify-content-center eachLineMargin">
+              <ng-container *ngIf="checkBooked(yelp_id); else booked_ok">
+                <button class="btn btn-lg btn-primary" (click)="cancelRes(yelp_id)">Cancel reservation</button>
+              </ng-container>
+              <ng-template #booked_ok>
+                <button class="btn btn-lg btn-danger" (click)="open()">Reserve Now</button>
+              </ng-template>
+            </div>
+            <div class="h-100 d-flex align-items-center justify-content-center shareon_button">
+              <div>Share On:</div>
+              <a href="http://twitter.com/share?text=Check {{business_detail.title}} on Yelp.&url={{business_detail.url}}" target="_blank">
+                <fa-icon style = "font-size: 30px" [icon]="faTwitter"></fa-icon>
+              </a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{business_detail.url}}" target="_blank">
+                <fa-icon style = "font-size: 30px" [icon]="faFacebook"></fa-icon>
+              </a>
+            </div>
+            <ng-container *ngIf = "business_detail.photos.length > 0">
+              <div class="h-100 d-flex align-items-center justify-content-center shareon_button">
+                <ngb-carousel>
+                  <ng-container *ngFor="let p of business_detail.photos; index as i">
+                    <ng-template ngbSlide>
+                      <div class="picsum-img-wrapper">
+                        <img class = "image_size" [src]="p" alt="No Photo Available" />
+                      </div>
+                    </ng-template>
+                  </ng-container>
+                </ngb-carousel>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Map location">
+        <div class = "white_review">
+          <google-map height="400px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
+            <map-marker [position]="marker.position" [label]="marker.label"></map-marker>
+          </google-map>
+        </div>
+      </mat-tab>
+      <mat-tab label="Reviews">
+        <ng-container *ngFor="let review of reviews_array; index as i">
+          <ng-container *ngIf= "i % 2 == 0; else white_version">
+            <div class = "sliver_review">
+              <br>
+              <h5>
+                {{review.name}}
+              </h5>
+              <div>
+                Rating: {{review.rating}}/5
+              </div>
+              <br>
+              <div>
+                {{review.text}}
+              </div>
+              <br>
+              <div>
+                {{review.time}}
+              </div>
+              <br>
+            </div>
+          </ng-container>
+          <ng-template #white_version>
+            <div class = "white_review">
+              <br>
+              <h5>
+                {{review.name}}
+              </h5>
+              <div>
+                Rating: {{review.rating}}/5
+              </div>
+              <br>
+              <div>
+                {{review.text}}
+              </div>
+              <br>
+              <div>
+                {{review.time}}
+              </div>
+              <br>
+            </div>
+          </ng-template>
+        </ng-container>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-container>

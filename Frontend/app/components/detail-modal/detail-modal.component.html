@@ -1,0 +1,88 @@
+<div class="modal-header">
+  <h4 class="modal-title">Reservation form</h4>
+</div>
+<div class="modal-body">
+  <div class="d-flex justify-content-center">
+    <br>
+    <h5>
+      {{business_name}}
+    </h5>
+  </div>
+      <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <div class = "input-group">
+            <input
+              formControlName="date"
+              [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
+              class="form-control"
+              placeholder="mm/dd/yyyy"
+              name="dp"
+              [displayMonths]="displayMonths"
+              [minDate]="minPickerDate"
+              [outsideDays]="outsideDays"
+              [showWeekNumbers]="showWeekNumbers"
+              ngbDatepicker
+              [readonly]="true"
+              #d="ngbDatepicker"
+            />
+            <button class="btn btn-outline-secondary bi" (click)="d.toggle()" type="button">
+              <fa-icon style = "font-size: 16px" [icon]="faCalendar" [styles]="{'color': 'black'}"></fa-icon>
+            </button>
+            <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+              <div *ngIf="f.date.errors.required">Date is required</div>
+            </div>
+          </div>
+        </div>
+        <div class = "form-group">
+          <label>Time</label>
+          <div style="font-size: 0px">
+              <mat-form-field apperance="standard">
+                <mat-select
+                  formControlName="hour"
+                  [ngClass]="{ 'is-invalid': submitted && f.hour.errors }"
+                  class="form-control"
+                >
+                  <mat-option *ngFor="let hour of hour_list" [value]="hour">
+                    {{hour}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div style="font-size: 12px; display: inline">
+                &nbsp;:
+              </div>
+              <mat-form-field apperance="standard">
+              <mat-select
+                formControlName="minute"
+                [ngClass]="{ 'is-invalid': submitted && f.minute.errors }"
+                class="form-control">
+                <mat-option *ngFor="let min of min_list" [value]="min">
+                  {{min}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div style="font-size: 12px; display: inline">
+              &nbsp;
+            </div>
+            <fa-icon style = "font-size: 16px" [icon]="faClock" [styles]="{'color': 'black'}"></fa-icon>
+          </div>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+          <div class="form-group">
+              <button class="btn btn-danger">Submit</button>
+          </div>
+        </div>
+    </form>
+  </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

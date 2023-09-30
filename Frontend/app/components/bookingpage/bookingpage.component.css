@@ -1,0 +1,18 @@
+.no_result {
+  color: red;
+  text-align: center;
+}
+.white_div {
+  width: 40%;
+  background-color: white;
+  margin-top: 5%;
+}
+.titles {
+  font-weight: bold;
+}
+.center_title {
+  text-align: center;
+}
+.top_space {
+  margin-top: 10%;
+}

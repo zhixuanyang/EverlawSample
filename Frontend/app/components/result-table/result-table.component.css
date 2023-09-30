@@ -1,0 +1,34 @@
+.white-side {
+  background-color: white;
+  width: 75%;
+  height: 20%;
+}
+.title {
+  font-weight: bold;
+}
+.silver-side {
+  background-color: lightgray;
+  width: 75%;
+  height: 20%;
+}
+#result-table {
+  margin-top: 5%;
+}
+.cropped-image {
+  width:  100px;
+  height: 100px;
+  object-fit: cover;
+}
+.image-div {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.no_result {
+  color: red;
+  text-align: center;
+}
+.white_div {
+  width: 40%;
+  background-color: white;
+  margin-top: 5%;
+}

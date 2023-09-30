@@ -1,0 +1,64 @@
+<div class = "container">
+  <div class = "top_space">
+    <ng-container *ngIf="bookingList.length !== 0; else no_result">
+      <h5 class = "center_title">List of your reservations</h5>
+      <br>
+      <div class="container">
+        <div class="row">
+          <div class="col titles">
+            #
+          </div>
+          <div class="col titles">
+            Business Name
+          </div>
+          <div class="col titles">
+            Date
+          </div>
+          <div class="col titles">
+            Time
+          </div>
+          <div class="col titles">
+            Email
+          </div>
+          <div class="col">
+          </div>
+          <hr>
+        </div>
+        <ng-container *ngFor="let books of bookingList; index as i">
+          <div class="row">
+            <div class="col titles">
+              {{i + 1}}
+            </div>
+            <div class="col">
+              {{books.name}}
+            </div>
+            <div class="col">
+              {{books.date.year}}-{{books.date.month}}-{{books.date.day}}
+            </div>
+            <div class="col">
+              {{books.hour}}:{{books.minute}}
+            </div>
+            <div class="col">
+              {{books.email}}
+            </div>
+            <div class="col">
+              <fa-icon style = "font-size: 18px" [icon]="faTrashCan" (click)="removeBooking(books.id)"></fa-icon>
+            </div>
+            <hr>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-template #no_result>
+      <div class = "container">
+        <div class = "h-100 d-flex align-items-center justify-content-center">
+          <div class = "white_div">
+            <h5 class = "no_result">
+              No reservations to show
+            </h5>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

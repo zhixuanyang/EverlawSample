@@ -1,0 +1,38 @@
+<form id = "search_form" [formGroup]="searchForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+  <h5 id = "search_title">Business Search</h5>
+  <div class="form-group" id="keyword_group">
+    <label>Keyword <sup class = "red-star">*</sup></label>
+      <input type="text" [matAutocomplete]="auto" class="form-control" formControlName = "keyword" id="keyword" required>
+        <mat-autocomplete #auto="matAutocomplete"
+        [displayWith]="displayWith" class="form-control form-control" (optionSelected)="onSelected($event.option.value)">
+        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let keyword of Yelp_auto" [value]="keyword">
+            {{keyword}}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+  </div>
+  <div class="form-group" id = "distancecategory">
+    <label id = "same_line">Distance</label>
+    <label id = "category_title">Category <sup class = "red-star">*</sup></label>
+  </div>
+  <div class="form-group">
+    <input type="number" class="form-control" formControlName = "distance" id="distance" required>
+    <select id = "category" formControlName = "category" class = "form-select" required>
+      <option *ngFor="let cat of categories" [ngValue]="cat.cat">{{ cat.value }}</option>
+    </select>
+  </div>
+  <div class="form-group" id = "location_line">
+    <label>Location <sup class = "red-star">*</sup></label>
+    <input type="text" formControlName = "location" class="form-control" id="location" required>
+  </div>
+  <div class="form-check" id = "auto_location_checked">
+    <input type="checkbox" (click) = "disableLocation()" formControlName = "checked_box" class="form-check-input" id="auto_location">
+    <label class="form-check-label" for="auto_location">Auto-detect my location</label>
+  </div>
+  <div id = "buttons_location">
+    <button type="submit" class="btn btn-danger">Submit</button>
+    <button type="button" class="btn btn-primary" id = "clear_button" (click)="reSet()">Clear</button>
+  </div>
+</form>

@@ -1,0 +1,100 @@
+<ng-container *ngIf="displayResults">
+  <ng-container *ngIf="no_result; else not_found_result">
+    <div class="container" id = "result-table">
+      <div class="row justify-content-md-center">
+        <div class = "white-side">
+          <div class = "row">
+            <div class="col-md">
+              <div class = "title">
+                #
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class = "title">
+                Image
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class = "title">
+                Business Name
+              </div>
+            </div>
+            <div class="col-md">
+              <div class = "title">
+                Rating
+              </div>
+            </div>
+            <div class="col-md">
+              <div class = "title">
+                Distance(miles)
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngFor="let user of query_result; index as i">
+            <ng-container *ngIf= "i % 2 == 0; else white_version">
+              <div class = "silver-side">
+                <div class = "row" (click)="produceDetail(i)">
+                  <div class="col-md">
+                    <div class = "title">
+                      {{i + 1}}
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class = "image-div">
+                      <img src={{query_result[i].image_url}} class = "cropped-image">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    {{query_result[i].name}}
+                  </div>
+                  <div class="col-md">
+                    {{query_result[i].rating}}
+                  </div>
+                  <div class="col-md">
+                    {{getMiles(query_result[i].distance)}}
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #white_version>
+              <div class = "white-side" (click)="produceDetail(i)">
+                <div class = "row">
+                  <div class="col-md">
+                    <div class = "title">
+                      {{i + 1}}
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class = "image-div">
+                      <img src={{query_result[i].image_url}} class = "cropped-image">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    {{query_result[i].name}}
+                  </div>
+                  <div class="col-md">
+                    {{query_result[i].rating}}
+                  </div>
+                  <div class="col-md">
+                    {{getMiles(query_result[i].distance)}}
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #not_found_result>
+    <div class = "container">
+      <div class = "h-100 d-flex align-items-center justify-content-center">
+        <div class = "white_div">
+          <h5 class = "no_result">
+            No results available
+          </h5>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>

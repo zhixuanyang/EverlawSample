@@ -1,0 +1,13 @@
+.body {
+  width: 100vw;
+  height: 100vh;
+}
+.City-image{
+  width: 100%;
+  min-height: 100%;
+  background-position: 50% 0%;
+  background-image:url('./images/city.jpg');
+  position: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}

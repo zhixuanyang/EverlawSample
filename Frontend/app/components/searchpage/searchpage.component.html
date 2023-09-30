@@ -1,0 +1,7 @@
+<app-search-form (newItemEvent)="createResult_table($event)">
+</app-search-form>
+<app-result-table *ngIf="displayResults" [query] = "query" (businessId)="createBusinessDetail($event)">
+</app-result-table>
+<app-business-detail *ngIf="displayDetail" [yelp_id] = "yelp_id" (hideDetail)="hideBusinessDetail()">
+</app-business-detail>
+
